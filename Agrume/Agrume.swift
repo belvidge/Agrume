@@ -170,6 +170,18 @@ public final class Agrume: UIViewController {
                                              animated: false)
     }
     view.addSubview(spinner)
+    
+    let toolbar = UIToolbar()
+    toolbar.frame = CGRectMake(0, self.view.frame.size.height - 46, self.view.frame.size.width, 46)
+    toolbar.sizeToFit()
+    
+    let actionButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "didPressActionButton")
+    actionButton.tintColor = UIColor.whiteColor()
+    
+    toolbar.setItems([actionButton], animated: true)
+    toolbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+    toolbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.Any)
+    self.view.addSubview(toolbar)
   }
 
   private var lastUsedOrientation: UIDeviceOrientation?
@@ -234,6 +246,12 @@ public final class Agrume: UIViewController {
 		}
 	}
 
+  
+  func didPressActionButton() {
+    let controller = UIActivityViewController(activityItems: images, applicationActivities: nil)
+    presentViewController(controller, animated: true, completion: nil)
+    
+  }
 }
 
 extension Agrume {
